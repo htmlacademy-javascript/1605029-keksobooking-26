@@ -30,12 +30,6 @@ function getRandomNumber (start, end, symbolsAfterComma) {
   min = min < 0 ? 0 : min;
   max = max < 0 ? 0 : max;
 
-  const multiplier = Math.pow(10, symbolsAfterComma);
-  // Проверка на равенство значений начала и конца интервала, если обрезать их до заданного количества символов после точки
-  if (Math.floor(min * multiplier) / multiplier === Math.floor(max * multiplier) / multiplier) {
-    return Math.floor(min * multiplier) / multiplier;
-  }
-
   const randomNumber = Math.random() * (max - min) + min;
   return +randomNumber.toFixed(symbolsAfterComma);
 }
