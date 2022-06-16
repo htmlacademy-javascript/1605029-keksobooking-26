@@ -88,15 +88,25 @@ function getRandomArrayElement (elements) {
   return elements[getRandomInteger(0, elements.length - 1)];
 }
 
+// Получить перемешанный массив случайной длины
+// из уникальных элементов заданного массива
+function getShuffledUniqueElements (elements) {
+  const elementsCount = getRandomInteger(1, elements.length);
+  const shuffledElements = [];
+
+  while (shuffledElements.length < elementsCount) {
+    const randomIndex = getRandomInteger(0, elementsCount - 1);
+    if (!shuffledElements.includes(elements[randomIndex])) {
+      shuffledElements.push(elements[randomIndex]);
+    }
+  }
+
+  return shuffledElements;
+}
+
 // Дополнить номер нулём.
 function padZero (number) {
   return Math.abs(number < 10) ? `0${number}` : String(number);
-}
-
-// Получить массив случайной длины из исходного массива. Длина ограничена длиной исходного массива.
-function getRandomCountElements (elements) {
-  const lastItemNumber = getRandomInteger(1, FEATURES.length);
-  return elements.slice(0, lastItemNumber);
 }
 
 function getAvatarSrc () {
@@ -120,9 +130,9 @@ function createOffer (location) {
     guests: getRandomInteger(1, MAX_GUESTS),
     checkin: getRandomArrayElement(CHECKIN_TIME),
     checkout: getRandomArrayElement(CHECKIN_TIME),
-    features: getRandomCountElements(FEATURES),
+    features: getShuffledUniqueElements(FEATURES),
     description: getRandomArrayElement(OFFER_DESCRIPTIONS),
-    photos: getRandomCountElements(PHOTOS)
+    photos: getShuffledUniqueElements(PHOTOS)
   };
 }
 
