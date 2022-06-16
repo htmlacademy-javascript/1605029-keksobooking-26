@@ -94,9 +94,9 @@ function padZero (number) {
 }
 
 // Получить массив случайной длины из исходного массива. Длина ограничена длиной исходного массива.
-function getRandomLengthArray (usingArray) {
-  const endItemNumber = getRandomInteger(1, FEATURES.length);
-  return usingArray.slice(0, endItemNumber);
+function getRandomCountElements (elements) {
+  const lastItemNumber = getRandomInteger(1, FEATURES.length);
+  return elements.slice(0, lastItemNumber);
 }
 
 function getAvatarSrc () {
@@ -120,9 +120,9 @@ function createOffer (location) {
     guests: getRandomInteger(1, MAX_GUESTS),
     checkin: getRandomArrayElement(CHECKIN_TIME),
     checkout: getRandomArrayElement(CHECKIN_TIME),
-    features: getRandomLengthArray(FEATURES),
+    features: getRandomCountElements(FEATURES),
     description: getRandomArrayElement(OFFER_DESCRIPTIONS),
-    photos: getRandomLengthArray(PHOTOS)
+    photos: getRandomCountElements(PHOTOS)
   };
 }
 
@@ -145,3 +145,4 @@ function createAdvertisement () {
 
 const similarAdvertisements = Array.from({length: ADVERTISEMENTS_COUNT}, createAdvertisement);
 console.log(similarAdvertisements);
+
