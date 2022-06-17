@@ -104,13 +104,8 @@ function getShuffledUniqueElements (elements) {
   return shuffledElements;
 }
 
-// Дополнить номер нулём.
-function padZero (number) {
-  return Math.abs(number < 10) ? `0${number}` : String(number);
-}
-
 function getAvatarSrc () {
-  const pictureNumber = padZero(getRandomInteger(0, AVATAR_COUNT));
+  const pictureNumber = String(getRandomInteger(0, AVATAR_COUNT)).padStart(2, '0');
   return AVATAR_PICTURE_SRC.replace(AVATAR_REPLACE_STRING, pictureNumber);
 }
 
@@ -153,6 +148,8 @@ function createAdvertisement () {
   };
 }
 
-const similarAdvertisements = Array.from({length: ADVERTISEMENTS_COUNT}, createAdvertisement);
-console.log(similarAdvertisements);
+function getAdvertisements(count) {
+  return Array.from({length: count}, createAdvertisement);
+}
 
+getAdvertisements(ADVERTISEMENTS_COUNT);
