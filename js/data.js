@@ -50,7 +50,7 @@ const LOCATION_DIGITS = 5;
 const ADVERTISEMENTS_COUNT = 10;
 
 function getAvatarSrc () {
-  const pictureNumber = String(getRandomInteger(0, AVATAR_COUNT)).padStart(2, '0');
+  const pictureNumber = String(getRandomInteger(1, AVATAR_COUNT)).padStart(2, '0');
   return AVATAR_PICTURE_SRC.replace(AVATAR_REPLACE_STRING, pictureNumber);
 }
 
@@ -87,7 +87,7 @@ function createAdvertisement () {
   const location = createLocation();
 
   return {
-    autor: createAuthor(),
+    author: createAuthor(),
     offer: createOffer(location),
     location
   };
