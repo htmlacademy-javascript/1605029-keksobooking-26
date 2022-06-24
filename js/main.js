@@ -1,3 +1,2 @@
-import {getAdvertisements} from './data.js';
-
-console.log(getAdvertisements());
+import './form.js';
+import './markup-generation.js';
