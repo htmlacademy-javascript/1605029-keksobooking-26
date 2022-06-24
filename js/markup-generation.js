@@ -8,6 +8,7 @@ const HOUSING_TYPE = {
   'hotel': 'Отель'
 };
 
+// Добавление контента в заданный элемент карты
 function addElementContent(adCard, selector, content, method) {
   const element = adCard.querySelector(selector);
   if (!content) {
