@@ -20,6 +20,10 @@ function manageFormDisablingByClass (formClass, disablingValue) {
 manageFormDisablingByClass('map__filters', true);
 
 
+Pristine.addValidator('required', () => true);
+Pristine.addValidator('minlength', () => true);
+Pristine.addValidator('maxlength', () => true);
+
 const adForm = document.querySelector('.ad-form');
 
 const pristine = new Pristine(adForm, {
