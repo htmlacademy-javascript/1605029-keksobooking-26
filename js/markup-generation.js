@@ -1,18 +1,18 @@
 import {getAdvertisements} from './data.js';
 
 const HOUSING_TYPE = {
-  'palace': 'Дворец',
-  'flat': 'Квартира',
-  'house': 'Дом',
-  'bungalow': 'Бунгало',
-  'hotel': 'Отель'
+  palace: 'Дворец',
+  flat: 'Квартира',
+  house: 'Дом',
+  bungalow: 'Бунгало',
+  hotel: 'Отель'
 };
 
 // Добавление контента в заданный элемент карты
 function addElementContent(adCard, selector, content, method) {
   const element = adCard.querySelector(selector);
   if (!content) {
-    element.classList.add('hidden');
+    element.remove();
     return;
   }
 
@@ -92,7 +92,7 @@ function createAdCard ({author, offer}, template) {
 
   addElementContent(cardElement, '.popup__title', title, 'textContent');
   addElementContent(cardElement, '.popup__text--address', address, 'textContent');
-  addElementContent(cardElement, '.popup__text--price', `${String(price)} <span>₽/ночь</span>`, 'innerHTML');
+  addElementContent(cardElement, '.js-price', price, 'textContent');
   addElementContent(cardElement, '.popup__type', HOUSING_TYPE[type], 'textContent');
   addElementContent(cardElement, '.popup__text--capacity', `${rooms} комнаты для ${guests} гостей`, 'textContent');
   addElementContent(cardElement, '.popup__text--time', `Заезд после ${checkin}, выезд до ${checkout}`, 'textContent');
