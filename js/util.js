@@ -34,10 +34,12 @@ function getRandomNumber (start, end, symbolsAfterComma) {
   return +randomNumber.toFixed(symbolsAfterComma);
 }
 
+
 // Получить случайный элемент массива.
 function getRandomArrayElement (elements) {
   return elements[getRandomInteger(0, elements.length - 1)];
 }
+
 
 // Получить перемешанный массив случайной длины
 // из уникальных элементов заданного массива
@@ -55,4 +57,10 @@ function getShuffledUniqueElements (elements) {
   return shuffledElements;
 }
 
-export {getRandomInteger, getRandomNumber, getRandomArrayElement, getShuffledUniqueElements};
+
+export {
+  getRandomInteger,
+  getRandomNumber,
+  getRandomArrayElement,
+  getShuffledUniqueElements
+};
