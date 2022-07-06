@@ -1,5 +1,3 @@
-import {getAdvertisements} from './data.js';
-
 const HOUSING_TYPE = {
   palace: 'Дворец',
   flat: 'Квартира',
@@ -7,6 +5,11 @@ const HOUSING_TYPE = {
   bungalow: 'Бунгало',
   hotel: 'Отель'
 };
+
+const cardTemplate = document.querySelector('#card')
+  .content
+  .querySelector('.popup');
+
 
 // Добавление контента в заданный элемент карты
 function addElementContent(adCard, selector, content, method) {
@@ -105,24 +108,15 @@ function createAdCard ({author, offer}, template) {
 }
 
 // Формирование фрагмента с группой карт по заданному списку объявлений
-function createAdsGroup (adsItems, template) {
+function createAdsGroup (adsItems) {
   const adsGroupFragment = document.createDocumentFragment();
 
   adsItems.forEach((advertisement) => {
-    const cardElement = createAdCard(advertisement, template);
+    const cardElement = createAdCard(advertisement, cardTemplate);
     adsGroupFragment.append(cardElement);
   });
 
-  return adsGroupFragment;
+  return adsGroupFragment.children;
 }
 
-
-const mapContainer = document.querySelector('#map-canvas');
-const cardTemplate = document.querySelector('#card')
-  .content
-  .querySelector('.popup');
-
-const adsList = getAdvertisements();
-const adsGroup = createAdsGroup(adsList, cardTemplate);
-
-mapContainer.append(adsGroup.children[0]);
+export {createAdsGroup};
