@@ -6,9 +6,12 @@ import {
   roomsCapacity
 } from './form-data.js';
 
-import {onSliderChange} from './form-slider.js';
+import {onSliderChange, setSliderValue} from './form-slider.js';
+import {DEFAULT_LAT, DEFAULT_LNG} from './map.js';
+import {sendData} from './api.js';
 
 const formElement = document.querySelector('.ad-form');
+const addressElement = formElement.querySelector('#address');
 const priceElement = formElement.querySelector('#price');
 const housingTypeElement = formElement.querySelector('#type');
 const roomNumberElement = formElement.querySelector('#room_number');
@@ -116,11 +119,33 @@ function setFormValidation () {
 
   timeInElement.addEventListener('change', onTimeinChange);
   timeOutElement.addEventListener('change', onTimeoutChange);
+}
 
+
+function setUserFormSubmit (onSuccess, onFail) {
   formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    pristine.validate();
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      sendData(
+        () => {
+          evt.target.reset();
+          onSuccess();
+        },
+        onFail,
+        new FormData(evt.target)
+      );
+    }
   });
 }
 
-export {setFormValidation};
+
+formElement.addEventListener('reset', (evt) => {
+  evt.preventDefault();
+  evt.target.reset();
+  setSliderValue(0);
+  addressElement.value = `${DEFAULT_LAT}, ${DEFAULT_LNG}`;
+});
+
+export {setFormValidation, setUserFormSubmit};

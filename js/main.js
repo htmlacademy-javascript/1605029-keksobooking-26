@@ -1,16 +1,18 @@
-import {getAdvertisements} from './data.js';
-import {createAdsGroup} from './markup-generation.js';
 import './form-slider.js';
 import './form-validation.js';
-import {setFormValidation} from './form-validation.js';
 import './map.js';
-import {createMarker} from './map.js';
+import {
+  openSuccessModal,
+  openErrorModal
+} from './form-modal.js';
+import {
+  setFormValidation,
+  setUserFormSubmit
+} from './form-validation.js';
+import {renderPins} from './map.js';
+import {getData} from './api.js';
+
 
 setFormValidation();
-
-const adsData = getAdvertisements();
-const adsGroup = createAdsGroup(adsData);
-
-adsData.forEach((adItem, index) => {
-  createMarker(adItem.location, adsGroup[index]);
-});
+setUserFormSubmit(openSuccessModal, openErrorModal);
+getData(renderPins);

@@ -58,9 +58,15 @@ function getShuffledUniqueElements (elements) {
 }
 
 
+function isEscapeKey (evt) {
+  return evt.key === 'Escape';
+}
+
+
 export {
   getRandomInteger,
   getRandomNumber,
   getRandomArrayElement,
-  getShuffledUniqueElements
+  getShuffledUniqueElements,
+  isEscapeKey
 };

@@ -38,8 +38,8 @@ function addElementContent(adCard, selector, content, method) {
 function setImagesList (adCard, images) {
   const imagesContainer = adCard.querySelector('.popup__photos');
 
-  if (images.length === 0) {
-    imagesContainer.classList.add('hidden');
+  if (!images || images.length === 0) {
+    imagesContainer.remove();
   } else {
     const imageTemplateItem = adCard.querySelector('.popup__photo');
     const imagesFragment = document.createDocumentFragment();
@@ -59,7 +59,7 @@ function setImagesList (adCard, images) {
 function removeUnnecessaryFeatures (adCard, features) {
   const featuresContainer = adCard.querySelector('.popup__features');
 
-  if (features.length === 0) {
+  if (!features || features.length === 0) {
     featuresContainer.classList.add('hidden');
   } else {
     const featuresItems = adCard.querySelectorAll('.popup__feature');
