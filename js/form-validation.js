@@ -141,11 +141,11 @@ function setUserFormSubmit (onSuccess, onFail) {
 }
 
 
-formElement.addEventListener('reset', (evt) => {
-  evt.preventDefault();
-  evt.target.reset();
+formElement.addEventListener('reset', () => {
   setSliderValue(0);
-  addressElement.value = `${DEFAULT_LAT}, ${DEFAULT_LNG}`;
+  setTimeout(() => {
+    addressElement.value = `${DEFAULT_LAT}, ${DEFAULT_LNG}`;
+  }, 0);
 });
 
 export {setFormValidation, setUserFormSubmit};
