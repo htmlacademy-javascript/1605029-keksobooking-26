@@ -83,6 +83,10 @@ function resetCoordinates () {
   }, SCALE);
 }
 
+function closePopup () {
+  map.closePopup();
+}
+
 
 function createMarker ({lat, lng}, adCard) {
   const marker = L.marker(
@@ -116,6 +120,7 @@ function renderPins (adsData) {
 
 export {
   resetCoordinates,
+  closePopup,
   createMarker,
   renderPins,
   DEFAULT_LAT,

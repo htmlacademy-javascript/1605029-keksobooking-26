@@ -7,7 +7,7 @@ import {
 } from './form-data.js';
 
 import {onSliderChange, setSliderValue} from './form-slider.js';
-import {DEFAULT_LAT, DEFAULT_LNG} from './map.js';
+import {closePopup, resetCoordinates, DEFAULT_LAT, DEFAULT_LNG} from './map.js';
 import {sendData} from './api.js';
 
 const formElement = document.querySelector('.ad-form');
@@ -142,6 +142,8 @@ function setUserFormSubmit (onSuccess, onFail) {
 
 
 formElement.addEventListener('reset', () => {
+  resetCoordinates();
+  closePopup();
   setSliderValue(0);
   setTimeout(() => {
     addressElement.value = `${DEFAULT_LAT}, ${DEFAULT_LNG}`;
