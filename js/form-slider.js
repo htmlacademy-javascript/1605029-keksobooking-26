@@ -4,6 +4,7 @@ const formElement = document.querySelector('.ad-form');
 const sliderElement = formElement.querySelector('.ad-form__slider');
 const priceElement = formElement.querySelector('#price');
 
+
 noUiSlider.create(sliderElement, {
   range: {
     min: 0,
@@ -24,19 +25,27 @@ noUiSlider.create(sliderElement, {
 
 const slider = sliderElement.noUiSlider;
 
+
 function onSliderChange (executeFunction) {
   slider.on('change', () => {
     executeFunction();
   });
 }
 
+
 function disableSlider () {
   sliderElement.setAttribute('disabled', true);
 }
 
+
 function enableSlider () {
   sliderElement.removeAttribute('disabled');
 }
+
+function setSliderValue(value) {
+  slider.set(value);
+}
+
 
 slider.on('update', () => {
   priceElement.value = slider.get();
@@ -46,4 +55,10 @@ priceElement.addEventListener('change', (evt) => {
   slider.set(evt.target.value);
 });
 
-export {onSliderChange, disableSlider, enableSlider};
+
+export {
+  onSliderChange,
+  disableSlider,
+  enableSlider,
+  setSliderValue
+};

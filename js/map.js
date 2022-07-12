@@ -4,11 +4,13 @@ import {
   disableForm,
   disableFilters
 } from './form-activation.js';
+import {createAdsGroup} from './markup-generation.js';
 
-const tokyoСoordinates = {
-  lat: 35.68949,
-  lng: 139.69171
-};
+const SIMILAR_ADS_COUNT = 10;
+const DEFAULT_LAT = 35.68949;
+const DEFAULT_LNG = 139.69171;
+const SCALE = 10;
+
 
 disableForm();
 disableFilters();
@@ -29,15 +31,14 @@ const icon = L.icon({
 const map = L.map('map-canvas')
   .on('load', () => {
     const addressElement = document.querySelector('#address');
-    addressElement.value = `${tokyoСoordinates.lat}, ${tokyoСoordinates.lng}`;
+    addressElement.value = `${DEFAULT_LAT}, ${DEFAULT_LNG}`;
 
-    enableFilters();
     enableForm();
   })
   .setView({
-    lat: tokyoСoordinates.lat,
-    lng: tokyoСoordinates.lng
-  }, 10);
+    lat: DEFAULT_LAT,
+    lng: DEFAULT_LNG
+  }, SCALE);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -49,8 +50,8 @@ L.tileLayer(
 
 const mainMarker = L.marker(
   {
-    lat: tokyoСoordinates.lat,
-    lng: tokyoСoordinates.lng
+    lat: DEFAULT_LAT,
+    lng: DEFAULT_LNG
   },
   {
     draggable: true,
@@ -72,14 +73,18 @@ const markerGroup = L.layerGroup().addTo(map);
 
 function resetCoordinates () {
   mainMarker.setLatLng({
-    lat: tokyoСoordinates.lat,
-    lng: tokyoСoordinates.lng
+    lat: DEFAULT_LAT,
+    lng: DEFAULT_LNG
   });
 
   map.setView({
-    lat: tokyoСoordinates.lat,
-    lng: tokyoСoordinates.lng
-  }, 10);
+    lat: DEFAULT_LAT,
+    lng: DEFAULT_LNG
+  }, SCALE);
+}
+
+function closePopup () {
+  map.closePopup();
 }
 
 
@@ -100,7 +105,24 @@ function createMarker ({lat, lng}, adCard) {
 }
 
 
+function renderPins (adsData) {
+  const adsGroup = createAdsGroup(adsData);
+  adsData.slice(0, SIMILAR_ADS_COUNT)
+    .forEach((adItem, index) => {
+      createMarker(adItem.location, adsGroup[index]);
+    });
+
+  if (adsData.length) {
+    enableFilters();
+  }
+}
+
+
 export {
   resetCoordinates,
-  createMarker
+  closePopup,
+  createMarker,
+  renderPins,
+  DEFAULT_LAT,
+  DEFAULT_LNG
 };
