@@ -2,6 +2,7 @@ import {
   TITLE_MIN_LENGTH,
   TITLE_MAX_LENGTH,
   MAX_PRICE,
+  AVATAR_DEFAULT_SRC,
   minPrice,
   roomsCapacity
 } from './form-data.js';
@@ -18,6 +19,9 @@ const roomNumberElement = formElement.querySelector('#room_number');
 const capacityElement = formElement.querySelector('#capacity');
 const timeInElement = formElement.querySelector('#timein');
 const timeOutElement = formElement.querySelector('#timeout');
+const avatarPrevievElement = formElement.querySelector('.ad-form-header__preview img');
+const photoPreviewElement = formElement.querySelector('.ad-form__photo');
+const submitButtonElement = formElement.querySelector('.ad-form__submit');
 
 
 // Делаем так, чтобы Pristine не выдавала свои дефолтные сообщения об ошибках
@@ -125,15 +129,20 @@ function setFormValidation () {
 function setUserFormSubmit (onSuccess, onFail) {
   formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
+    submitButtonElement.setAttribute('disabled', 'disabled');
 
     const isValid = pristine.validate();
     if (isValid) {
       sendData(
         () => {
           evt.target.reset();
+          submitButtonElement.removeAttribute('disabled');
           onSuccess();
         },
-        onFail,
+        () => {
+          submitButtonElement.removeAttribute('disabled');
+          onFail();
+        },
         new FormData(evt.target)
       );
     }
@@ -145,6 +154,8 @@ formElement.addEventListener('reset', () => {
   resetCoordinates();
   closePopup();
   setSliderValue(0);
+  avatarPrevievElement.src = AVATAR_DEFAULT_SRC;
+  photoPreviewElement.style = '';
   setTimeout(() => {
     addressElement.value = `${DEFAULT_LAT}, ${DEFAULT_LNG}`;
   }, 0);

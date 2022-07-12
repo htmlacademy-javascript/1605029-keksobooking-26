@@ -1,4 +1,5 @@
 import './form-slider.js';
+import './picture-upload.js';
 import './form-validation.js';
 import './map.js';
 import {

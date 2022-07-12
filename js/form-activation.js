@@ -22,9 +22,6 @@ function enableForm () {
   for (const fieldset of formElement.children) {
     fieldset.removeAttribute('disabled', 'disabled');
   }
-  // У поля адреса остаётся атрибут disabled
-  /*formElement.querySelector('#address')
-    .setAttribute('disabled', 'disabled');*/
 
   enableSlider();
 
