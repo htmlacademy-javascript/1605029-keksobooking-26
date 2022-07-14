@@ -2,6 +2,7 @@ export const TITLE_MIN_LENGTH = 30;
 export const TITLE_MAX_LENGTH = 100;
 export const MAX_PRICE = 100000;
 export const AVATAR_DEFAULT_SRC = './img/muffin-grey.svg';
+export const PRICE_PLACEHOLDER_DEFAULT = 1000;
 export const minPrice = {
   bungalow: 0,
   flat: 1000,

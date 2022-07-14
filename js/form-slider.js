@@ -1,4 +1,7 @@
-import {MAX_PRICE} from './form-data.js';
+import {
+  MAX_PRICE,
+  PRICE_PLACEHOLDER_DEFAULT
+} from './form-data.js';
 
 const formElement = document.querySelector('.ad-form');
 const sliderElement = formElement.querySelector('.ad-form__slider');
@@ -47,6 +50,12 @@ function setSliderValue(value) {
 }
 
 
+function resetSlider() {
+  setSliderValue(0);
+  priceElement.placeholder = PRICE_PLACEHOLDER_DEFAULT;
+}
+
+
 slider.on('update', () => {
   priceElement.value = slider.get();
 });
@@ -60,5 +69,5 @@ export {
   onSliderChange,
   disableSlider,
   enableSlider,
-  setSliderValue
+  resetSlider
 };

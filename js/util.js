@@ -1,3 +1,5 @@
+const ALERT_SHOW_TIME = 6000;
+
 // Получить случайное целое число из диапазона включительно.
 function getRandomInteger (start, end) {
   let min = Math.min(start, end);
@@ -63,10 +65,47 @@ function isEscapeKey (evt) {
 }
 
 
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+function showAlert (message) {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '1100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '200px';
+  alertContainer.style.right = '0';
+  alertContainer.style.width = '500px';
+  alertContainer.style.margin = '0 auto';
+  alertContainer.style.padding = '40px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.color = '#000000';
+  alertContainer.style.backgroundColor = 'tomato';
+  alertContainer.style.border = '4px solid black';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+}
+
+
 export {
   getRandomInteger,
   getRandomNumber,
   getRandomArrayElement,
   getShuffledUniqueElements,
-  isEscapeKey
+  isEscapeKey,
+  showAlert,
+  debounce
 };

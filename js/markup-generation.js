@@ -1,4 +1,4 @@
-const HOUSING_TYPE = {
+const housingType = {
   palace: 'Дворец',
   flat: 'Квартира',
   house: 'Дом',
@@ -34,6 +34,7 @@ function addElementContent(adCard, selector, content, method) {
   }
 }
 
+
 // Формирование набора из фотографий в карточке объявления
 function setImagesList (adCard, images) {
   const imagesContainer = adCard.querySelector('.popup__photos');
@@ -55,6 +56,7 @@ function setImagesList (adCard, images) {
   }
 }
 
+
 // Удаление ненужных удобств из карточки
 function removeUnnecessaryFeatures (adCard, features) {
   const featuresContainer = adCard.querySelector('.popup__features');
@@ -74,6 +76,7 @@ function removeUnnecessaryFeatures (adCard, features) {
     });
   }
 }
+
 
 // Формирование одной карточки объявления
 function createAdCard ({author, offer}, template) {
@@ -96,7 +99,7 @@ function createAdCard ({author, offer}, template) {
   addElementContent(cardElement, '.popup__title', title, 'textContent');
   addElementContent(cardElement, '.popup__text--address', address, 'textContent');
   addElementContent(cardElement, '.js-price', price, 'textContent');
-  addElementContent(cardElement, '.popup__type', HOUSING_TYPE[type], 'textContent');
+  addElementContent(cardElement, '.popup__type', housingType[type], 'textContent');
   addElementContent(cardElement, '.popup__text--capacity', `${rooms} комнаты для ${guests} гостей`, 'textContent');
   addElementContent(cardElement, '.popup__text--time', `Заезд после ${checkin}, выезд до ${checkout}`, 'textContent');
   addElementContent(cardElement, '.popup__description', description, 'textContent');
@@ -106,6 +109,7 @@ function createAdCard ({author, offer}, template) {
 
   return cardElement;
 }
+
 
 // Формирование фрагмента с группой карт по заданному списку объявлений
 function createAdsGroup (adsItems) {
@@ -118,5 +122,6 @@ function createAdsGroup (adsItems) {
 
   return adsGroupFragment.children;
 }
+
 
 export {createAdsGroup};
