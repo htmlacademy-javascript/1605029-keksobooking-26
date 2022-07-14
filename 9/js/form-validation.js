@@ -137,10 +137,10 @@ function setFormValidation () {
 function setUserFormSubmit (onSuccess, onFail) {
   formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    submitButtonElement.setAttribute('disabled', 'disabled');
 
     const isValid = pristine.validate();
     if (isValid) {
+      submitButtonElement.setAttribute('disabled', 'disabled');
       sendData(
         () => {
           evt.target.reset();
@@ -163,6 +163,7 @@ formElement.addEventListener('reset', () => {
   resetCoordinates();
   closePopup();
   resetSlider();
+  pristine.reset();
   avatarPrevievElement.src = AVATAR_DEFAULT_SRC;
   photoPreviewElement.style = '';
   setTimeout(() => {

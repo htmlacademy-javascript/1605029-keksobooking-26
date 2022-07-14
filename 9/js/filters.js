@@ -1,4 +1,5 @@
 const FILTER_DEFAULT_VALUE = 'any';
+const MAX_ADS_COUNT = 10;
 const priceFilterValues = {
   low: {
     min: 0,
@@ -86,16 +87,19 @@ function filterAds (adsItems) {
 
   const filteredAdsItems = [];
 
-  adsItems.forEach((adItem) => {
-    if (isMatchesByType(adItem, filterTypeValue)
-      && isMatchesByPrice(adItem, filterPriceValue)
-      && isMatchesByRooms(adItem, filterRoomsValue)
-      && isMatchesByGuests(adItem, filterGuestsValue)
-      && isMatchesByFeatures(adItem, filterFeaturesValues)
+  for (let i = 0; i < adsItems.length; i++) {
+    if (isMatchesByType(adsItems[i], filterTypeValue)
+      && isMatchesByPrice(adsItems[i], filterPriceValue)
+      && isMatchesByRooms(adsItems[i], filterRoomsValue)
+      && isMatchesByGuests(adsItems[i], filterGuestsValue)
+      && isMatchesByFeatures(adsItems[i], filterFeaturesValues)
     ) {
-      filteredAdsItems.push(adItem);
+      if (filteredAdsItems.length >= MAX_ADS_COUNT) {
+        break;
+      }
+      filteredAdsItems.push(adsItems[i]);
     }
-  });
+  }
 
   return filteredAdsItems;
 }

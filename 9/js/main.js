@@ -7,7 +7,7 @@ import {setFormValidation, setUserFormSubmit} from './form-validation.js';
 import {renderPins} from './map.js';
 import {setFiltersFormChange, setFiltersFormReset, filterAds} from './filters.js';
 import {getData} from './api.js';
-import {debounce} from './util.js';
+import {showAlert, debounce} from './util.js';
 
 const RERENDER_DELAY = 500;
 
@@ -21,5 +21,5 @@ getData((adsData) => {
     () => renderPins(filterAds(adsData)),
     RERENDER_DELAY
   ));
-});
+}, showAlert);
 

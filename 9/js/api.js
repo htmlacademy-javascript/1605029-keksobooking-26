@@ -1,9 +1,10 @@
-function getData (onSuccess) {
+function getData (onSuccess, onFail) {
   fetch ('https://26.javascript.pages.academy/keksobooking/data')
     .then((response) => response.json())
     .then((adsData) => {
       onSuccess(adsData);
-    });
+    })
+    .catch(() => onFail('Не удалось загрузить объявления. Попробуйте перезагрузить страницу.'));
 }
 
 
