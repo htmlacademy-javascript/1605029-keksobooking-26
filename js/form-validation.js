@@ -163,6 +163,7 @@ formElement.addEventListener('reset', () => {
   resetCoordinates();
   closePopup();
   resetSlider();
+  pristine.reset();
   avatarPrevievElement.src = AVATAR_DEFAULT_SRC;
   photoPreviewElement.style = '';
   setTimeout(() => {

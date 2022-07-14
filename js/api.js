@@ -1,5 +1,5 @@
 function getData (onSuccess, onFail) {
-  fetch ('https://26.javascript.pages.academ/keksobooking/data')
+  fetch ('https://26.javascript.pages.academy/keksobooking/data')
     .then((response) => response.json())
     .then((adsData) => {
       onSuccess(adsData);
