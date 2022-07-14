@@ -24,7 +24,7 @@ function openFormModal (isSuccess) {
       : document.querySelector('#error').content.querySelector('.error');
 
     modalElement = modalTemplate.cloneNode(true);
-    document.querySelector('body').append(modalElement);
+    document.body.append(modalElement);
 
     document.addEventListener('keydown', onPopupEscDown);
     document.addEventListener('click', onPopupDocumentClick);

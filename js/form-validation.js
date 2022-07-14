@@ -137,10 +137,10 @@ function setFormValidation () {
 function setUserFormSubmit (onSuccess, onFail) {
   formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    submitButtonElement.setAttribute('disabled', 'disabled');
 
     const isValid = pristine.validate();
     if (isValid) {
+      submitButtonElement.setAttribute('disabled', 'disabled');
       sendData(
         () => {
           evt.target.reset();
