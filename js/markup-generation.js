@@ -1,5 +1,3 @@
-import {filterAds} from './filters.js';
-
 const housingType = {
   palace: 'Дворец',
   flat: 'Квартира',
@@ -115,10 +113,9 @@ function createAdCard ({author, offer}, template) {
 
 // Формирование фрагмента с группой карт по заданному списку объявлений
 function createAdsGroup (adsItems) {
-  const filtredAdsItems = filterAds(adsItems);
   const adsGroupFragment = document.createDocumentFragment();
 
-  filtredAdsItems.forEach((advertisement) => {
+  adsItems.forEach((advertisement) => {
     const cardElement = createAdCard(advertisement, cardTemplate);
     adsGroupFragment.append(cardElement);
   });

@@ -25,6 +25,12 @@ function setFiltersFormChange (cb) {
   });
 }
 
+function setFiltersFormReset (cb) {
+  filtersFormElement.addEventListener('reset', () => {
+    cb();
+  });
+}
+
 
 function isMatchesByType (adItem, filterTypeValue) {
   return filterTypeValue === FILTER_DEFAULT_VALUE || adItem.offer.type === filterTypeValue;
@@ -94,4 +100,9 @@ function filterAds (adsItems) {
   return filteredAdsItems;
 }
 
-export {filterAds, setFiltersFormChange};
+
+export {
+  filterAds,
+  setFiltersFormChange,
+  setFiltersFormReset
+};

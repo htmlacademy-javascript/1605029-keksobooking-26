@@ -6,9 +6,16 @@ import {
   minPrice,
   roomsCapacity
 } from './form-data.js';
-
-import {onSliderChange, setSliderValue} from './form-slider.js';
-import {closePopup, resetCoordinates, DEFAULT_LAT, DEFAULT_LNG} from './map.js';
+import {
+  onSliderChange,
+  resetSlider
+} from './form-slider.js';
+import {
+  closePopup,
+  resetCoordinates,
+  DEFAULT_LAT,
+  DEFAULT_LNG
+} from './map.js';
 import {sendData} from './api.js';
 
 const formElement = document.querySelector('.ad-form');
@@ -22,6 +29,7 @@ const timeOutElement = formElement.querySelector('#timeout');
 const avatarPrevievElement = formElement.querySelector('.ad-form-header__preview img');
 const photoPreviewElement = formElement.querySelector('.ad-form__photo');
 const submitButtonElement = formElement.querySelector('.ad-form__submit');
+const filtersFormElement = document.querySelector('.map__filters');
 
 
 // Делаем так, чтобы Pristine не выдавала свои дефолтные сообщения об ошибках
@@ -151,9 +159,10 @@ function setUserFormSubmit (onSuccess, onFail) {
 
 
 formElement.addEventListener('reset', () => {
+  filtersFormElement.reset();
   resetCoordinates();
   closePopup();
-  setSliderValue(0);
+  resetSlider();
   avatarPrevievElement.src = AVATAR_DEFAULT_SRC;
   photoPreviewElement.style = '';
   setTimeout(() => {
