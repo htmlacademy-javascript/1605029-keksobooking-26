@@ -11,9 +11,13 @@ import {
   setUserFormSubmit
 } from './form-validation.js';
 import {renderPins} from './map.js';
+import {setFiltersFormChange, filterAds} from './filters.js';
 import {getData} from './api.js';
 
 
 setFormValidation();
 setUserFormSubmit(openSuccessModal, openErrorModal);
-getData(renderPins);
+getData((adsData) => {
+  renderPins(adsData);
+  setFiltersFormChange(() => renderPins(filterAds(adsData)));
+});

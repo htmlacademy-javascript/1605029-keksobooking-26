@@ -107,6 +107,8 @@ function createMarker ({lat, lng}, adCard) {
 
 function renderPins (adsData) {
   const adsGroup = createAdsGroup(adsData);
+  markerGroup.clearLayers();
+
   adsData.slice(0, SIMILAR_ADS_COUNT)
     .forEach((adItem, index) => {
       createMarker(adItem.location, adsGroup[index]);
@@ -117,12 +119,17 @@ function renderPins (adsData) {
   }
 }
 
+function clearMarkers () {
+  markerGroup.clearLayers();
+}
+
 
 export {
   resetCoordinates,
   closePopup,
   createMarker,
   renderPins,
+  clearMarkers,
   DEFAULT_LAT,
   DEFAULT_LNG
 };
