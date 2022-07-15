@@ -24,10 +24,6 @@ function addElementContent(adCard, selector, content, method) {
       element.textContent = content;
       break;
 
-    case 'innerHTML':
-      element.innerHTML = content;
-      break;
-
     case 'src':
       element.src = content;
       break;
