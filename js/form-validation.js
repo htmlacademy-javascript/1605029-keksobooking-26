@@ -54,8 +54,9 @@ const pristine = new Pristine(formElement, {
 
 // Проверка заголовка
 function validateTitle (value) {
-  return value.length >= TITLE_MIN_LENGTH
-    && value.length <= TITLE_MAX_LENGTH;
+  const valueTrimmed = value.trim();
+  return valueTrimmed.length >= TITLE_MIN_LENGTH
+    && valueTrimmed.length <= TITLE_MAX_LENGTH;
 }
 
 // Проверка цены за ночь
